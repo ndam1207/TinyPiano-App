@@ -76,11 +76,13 @@ public class MainActivity extends AppCompatActivity {
 
         else if(firstTouch.getAction() == UP){
             ImageView pressedKey = findKeyByTouch(firstTouch);
-            Iterator<TouchInfo> touchInfoIterator = touchInfoList.iterator();
-            while(touchInfoIterator.hasNext()){
-                TouchInfo touchInfo = touchInfoIterator.next();
-                if(touchInfo.pressedKey == pressedKey){
-                    touchInfoIterator.remove();
+            if(pressedKey != null) {
+                Iterator<TouchInfo> touchInfoIterator = touchInfoList.iterator();
+                while (touchInfoIterator.hasNext()) {
+                    TouchInfo touchInfo = touchInfoIterator.next();
+                    if (touchInfo.touch.getTouchId() == firstTouch.getTouchId()) {
+                        touchInfoIterator.remove();
+                    }
                 }
             }
         }
